@@ -97,7 +97,7 @@ namespace MNoFlinchNoWobble
             }
         }
 
-        // not finally, traps (maybe explosive bullets, not tested yet)
+        // not finally, traps and explosive bullets
         [HarmonyPatch]
         internal static class FlinchingPatchesTraps
         {
