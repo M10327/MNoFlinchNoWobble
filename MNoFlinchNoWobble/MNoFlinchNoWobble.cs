@@ -16,6 +16,7 @@ namespace MNoFlinchNoWobble
         {
             DamageTool.damagePlayerRequested += DamageTool_damagePlayerRequested;
             Patches.PatchAll();
+            Rocket.Core.Logging.Logger.Log($"{Name} {Assembly.GetName().Version} has been loaded!");
         }
 
         private void DamageTool_damagePlayerRequested(ref DamagePlayerParameters par, ref bool shouldAllow)
