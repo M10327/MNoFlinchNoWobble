@@ -96,7 +96,7 @@ namespace MNoFlinchNoWobble
             }
         }
 
-        // not finally, traps
+        // not finally, traps (maybe explosive bullets, not tested yet)
         [HarmonyPatch]
         internal static class FlinchingPatchesTraps
         {
@@ -107,11 +107,22 @@ namespace MNoFlinchNoWobble
             {
                 var pos = par.position;
                 var distance = par.relevantDistance;
-
+                var dir = par.direction;
+                var id = par.relevantPlayerID;
+                var reliable = par.reliable;
+                var scale = par.scale;
+                var replicate = par.shouldReplicate;
+                var instigated = par.wasInstigatedByPlayer;
                 par = new TriggerEffectParameters(ReplaceID(par.asset.id))
                 {
                     position = pos,
-                    relevantDistance = distance
+                    relevantDistance = distance,
+                    direction = dir,
+                    relevantPlayerID = id,
+                    reliable = reliable,
+                    scale = scale,
+                    shouldReplicate = replicate,
+                    wasInstigatedByPlayer = instigated
                 };
             }
         }
