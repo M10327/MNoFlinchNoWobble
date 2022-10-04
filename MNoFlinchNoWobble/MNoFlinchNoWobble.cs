@@ -103,17 +103,17 @@ namespace MNoFlinchNoWobble
             [HarmonyPatch(typeof(EffectManager))]
             [HarmonyPatch("triggerEffect")]
             [HarmonyPrefix]
-            static void Fliching(ref TriggerEffectParameters par)
+            static void Fliching(ref TriggerEffectParameters parameters)
             {
-                var pos = par.position;
-                var distance = par.relevantDistance;
-                var dir = par.direction;
-                var id = par.relevantPlayerID;
-                var reliable = par.reliable;
-                var scale = par.scale;
-                var replicate = par.shouldReplicate;
-                var instigated = par.wasInstigatedByPlayer;
-                par = new TriggerEffectParameters(ReplaceID(par.asset.id))
+                var pos = parameters.position;
+                var distance = parameters.relevantDistance;
+                var dir = parameters.direction;
+                var id = parameters.relevantPlayerID;
+                var reliable = parameters.reliable;
+                var scale = parameters.scale;
+                var replicate = parameters.shouldReplicate;
+                var instigated = parameters.wasInstigatedByPlayer;
+                parameters = new TriggerEffectParameters(ReplaceID(parameters.asset.id))
                 {
                     position = pos,
                     relevantDistance = distance,
