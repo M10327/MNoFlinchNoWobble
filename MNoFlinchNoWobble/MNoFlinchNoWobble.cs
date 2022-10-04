@@ -96,6 +96,26 @@ namespace MNoFlinchNoWobble
             }
         }
 
+        // not finally, traps
+        [HarmonyPatch]
+        internal static class FlinchingPatchesTraps
+        {
+            [HarmonyPatch(typeof(EffectManager))]
+            [HarmonyPatch("triggerEffect")]
+            [HarmonyPrefix]
+            static void Fliching(ref TriggerEffectParameters par)
+            {
+                var pos = par.position;
+                var distance = par.relevantDistance;
+
+                par = new TriggerEffectParameters(ReplaceID(par.asset.id))
+                {
+                    position = pos,
+                    relevantDistance = distance
+                };
+            }
+        }
+
         public static ushort ReplaceID(ushort id)
         {
             switch (id)
