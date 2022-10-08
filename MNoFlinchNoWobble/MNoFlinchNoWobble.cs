@@ -106,6 +106,7 @@ namespace MNoFlinchNoWobble
             [HarmonyPrefix]
             static void Fliching(ref TriggerEffectParameters parameters)
             {
+                if (parameters.asset == null) return;
                 var pos = parameters.position;
                 var distance = parameters.relevantDistance;
                 var dir = parameters.direction;
