@@ -13,14 +13,12 @@ namespace MNoFlinchNoWobble
         public bool DisableFlinching;
         public bool DisableWobble;
         public byte HPCalcOffset;
-        public int FlinchMultiplier;
         public List<AntiWobbleExplosionReplacements> AntiWobbleReplacements;
         public void LoadDefaults()
         {
             DisableFlinching = true;
             DisableWobble = true;
             HPCalcOffset = 10;
-            FlinchMultiplier = 0;
             AntiWobbleReplacements = new List<AntiWobbleExplosionReplacements>()
             {
                 new AntiWobbleExplosionReplacements()

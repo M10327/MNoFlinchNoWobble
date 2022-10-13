@@ -33,7 +33,7 @@ namespace MNoFlinchNoWobble
             {
                 if (par.player.life.health - par.damage + Configuration.Instance.HPCalcOffset > 0)
                 {
-                    par.direction *= Configuration.Instance.FlinchMultiplier;
+                    par.direction *= 0;
                 }
             }
             catch (Exception ex)
