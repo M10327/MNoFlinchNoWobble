@@ -10,12 +10,12 @@ using UnityEngine;
 
 namespace MNoFlinchNoWobble
 {
-    public class MNoFlinchNoWobble : RocketPlugin
+    public class MNoFlinchNoWobble : RocketPlugin<Config>
     {
         protected override void Load()
         {
-            DamageTool.damagePlayerRequested += DamageTool_damagePlayerRequested;
-            Patches.PatchAll();
+            if (Configuration.Instance.DisableFlinching) DamageTool.damagePlayerRequested += DamageTool_damagePlayerRequested;
+            if (Configuration.Instance.DisableWobble) Patches.PatchAll();
             Rocket.Core.Logging.Logger.Log($"{Name} {Assembly.GetName().Version} has been loaded!");
         }
 
@@ -38,7 +38,7 @@ namespace MNoFlinchNoWobble
         protected override void Unload()
         {
             DamageTool.damagePlayerRequested -= DamageTool_damagePlayerRequested;
-            Patches.UnpatchAll();
+            if (Configuration.Instance.DisableWobble) Patches.UnpatchAll();
         }
     }
 
