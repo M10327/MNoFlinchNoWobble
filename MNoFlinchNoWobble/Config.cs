@@ -12,7 +12,7 @@ namespace MNoFlinchNoWobble
     {
         public bool DisableFlinching;
         public bool DisableWobble;
-        public byte HPCalcOffset;
+        public int HPCalcOffset;
         public List<AntiWobbleExplosionReplacements> AntiWobbleReplacements;
         public void LoadDefaults()
         {
