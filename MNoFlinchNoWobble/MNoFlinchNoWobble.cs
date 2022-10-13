@@ -12,10 +12,18 @@ namespace MNoFlinchNoWobble
 {
     public class MNoFlinchNoWobble : RocketPlugin<Config>
     {
+        public Dictionary<ushort, ushort> EffectRep;
+        public static MNoFlinchNoWobble Instance { get; private set; }
         protected override void Load()
         {
+            Instance = this;
             if (Configuration.Instance.DisableFlinching) DamageTool.damagePlayerRequested += DamageTool_damagePlayerRequested;
             if (Configuration.Instance.DisableWobble) Patches.PatchAll();
+            EffectRep = new Dictionary<ushort, ushort>();
+            foreach (var x in Configuration.Instance.AntiWobbleReplacements)
+            {
+                EffectRep[x.ReplacedId] = x.ReplacementId;
+            }
             Rocket.Core.Logging.Logger.Log($"{Name} {Assembly.GetName().Version} has been loaded!");
         }
 
@@ -131,25 +139,11 @@ namespace MNoFlinchNoWobble
 
         public static ushort ReplaceID(ushort id)
         {
-            switch (id)
+            if (MNoFlinchNoWobble.Instance.EffectRep.ContainsKey(id))
             {
-                case 20:
-                    return 18530;
-                case 34:
-                    return 18531;
-                case 45:
-                    return 18532;
-                case 53:
-                    return 18533;
-                case 54:
-                    return 18534;
-                case 123:
-                    return 18535;
-                case 136:
-                    return 18536;
-                default:
-                    return id;
+                return MNoFlinchNoWobble.Instance.EffectRep[id];
             }
+            return id;
         }
     }
 }
