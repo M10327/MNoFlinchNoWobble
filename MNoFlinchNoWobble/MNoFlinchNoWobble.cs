@@ -31,9 +31,9 @@ namespace MNoFlinchNoWobble
         {
             try
             {
-                if (par.player.life.health - par.damage > 0)
+                if (par.player.life.health - par.damage + Configuration.Instance.HPCalcOffset > 0)
                 {
-                    par.direction = new UnityEngine.Vector3(0, 0, 0);
+                    par.direction *= Configuration.Instance.FlinchMultiplier;
                 }
             }
             catch (Exception ex)
