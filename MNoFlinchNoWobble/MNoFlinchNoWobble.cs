@@ -115,25 +115,8 @@ namespace MNoFlinchNoWobble
             static void Fliching(ref TriggerEffectParameters parameters)
             {
                 if (parameters.asset == null) return;
-                var pos = parameters.position;
-                var distance = parameters.relevantDistance;
-                var dir = parameters.direction;
-                var id = parameters.relevantPlayerID;
-                var reliable = parameters.reliable;
-                var scale = parameters.scale;
-                var replicate = parameters.shouldReplicate;
-                var instigated = parameters.wasInstigatedByPlayer;
-                parameters = new TriggerEffectParameters(ReplaceID(parameters.asset.id))
-                {
-                    position = pos,
-                    relevantDistance = distance,
-                    direction = dir,
-                    relevantPlayerID = id,
-                    reliable = reliable,
-                    scale = scale,
-                    shouldReplicate = replicate,
-                    wasInstigatedByPlayer = instigated
-                };
+
+                parameters.asset = (EffectAsset)Assets.find(EAssetType.EFFECT, ReplaceID(parameters.asset.id));
             }
         }
 
